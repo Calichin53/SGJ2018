@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
+    [Header("EnemigoBasico")]
+
     public float speed;
+    public float daño;
+
 
     private Transform target;
     private int wavePointIndex = 0;
