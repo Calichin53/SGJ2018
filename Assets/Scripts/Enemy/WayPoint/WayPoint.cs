@@ -1,0 +1,27 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WayPoint : MonoBehaviour {
+
+    public static Transform[] points;
+
+    public void Awake()
+    {
+        points = new Transform[transform.childCount];
+        for(int i = 0; i < points.Length; i++)
+        {
+            points[i] = transform.GetChild(i);
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+}
