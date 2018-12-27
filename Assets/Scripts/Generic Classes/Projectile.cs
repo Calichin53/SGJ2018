@@ -6,7 +6,7 @@ public class Projectile {
 
     ProjectileType mType;
     ProjectileState mState;
-    Vector3 mPosition;
+    Vector3 mPosition, mDirection;
     float mVelocity, tmpTimer, dt, mDamage;
     Creep mTarget;
 
@@ -41,6 +41,11 @@ public class Projectile {
     void DamageTarget()
     { mTarget.Damage(mDamage);
         mState=ProjectileState.Destroy;
+    }
+
+    void Move()
+    {
+
     }
 
 }
