@@ -2105,7 +2105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 4327751783347230, guid: 02bf4fc50a25abc428256081156a691f, type: 2}
   SpawnPoint: {fileID: 1907342057}
-  timeOfSpawn: 5
+  timeOfSpawn: 30
   countDown: 2
 --- !u!1 &1930881075
 GameObject:
