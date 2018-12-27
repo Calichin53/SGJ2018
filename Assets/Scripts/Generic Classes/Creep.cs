@@ -26,6 +26,14 @@ public class Creep {
             mState = CreepState.Dead;
         }
     }
+
+    public bool isAlive()
+    {
+        if (mCurrentHP <= 0)
+            return false;
+        else
+            return true;
+    }
 }
 
 public enum CreepType { Normal, Air, Immune};
