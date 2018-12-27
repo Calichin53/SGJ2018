@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class NexoController : MonoBehaviour {
-    public Text life;
+    //public Text life;
     public float vida;
 
-    public EnemyController golpe;
+    public EnemyNavMesh golpe;
 
 	// Use this for initialization
 	void Start () {
-        life.text = vida.ToString();
+        //life.text = vida.ToString();
 	}
 	
 	// Update is called once per frame
@@ -19,13 +19,13 @@ public class NexoController : MonoBehaviour {
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
             vida -= golpe.daño;
         }
-        life.text = vida.ToString();
-    }
+        //life.text = vida.ToString();
+    }*/
 
 }

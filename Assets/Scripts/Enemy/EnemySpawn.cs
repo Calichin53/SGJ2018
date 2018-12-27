@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class EnemySpawn : MonoBehaviour {
     public Transform enemy;
     public Transform SpawnPoint;
     public float timeOfSpawn;
     public float countDown=2f;
+    public Text oleada;
+
+
 
     private int waveIndex = 0;
 	// Use this for initialization
@@ -18,12 +23,12 @@ public class EnemySpawn : MonoBehaviour {
 	void Update () {
         if (countDown <= 0f)
         {
-            StartCoroutine(SpawnWave());
+            StartCoroutine(WaitForSpawn());
             countDown = timeOfSpawn;
         }
 
-        countDown -= Time.deltaTime; 
-
+        countDown -= Time.deltaTime;
+        oleada.text = "Siguiente oleada en: "+ Mathf.Round(countDown).ToString() +"s";
 	}
 
     IEnumerator SpawnWave()
@@ -38,6 +43,16 @@ public class EnemySpawn : MonoBehaviour {
         }
 
     }
+
+    IEnumerator WaitForSpawn()
+    {
+
+        StartCoroutine(SpawnWave());
+        yield return new WaitForSeconds(4f);
+        
+
+    }
+
 
     void SpawEnemy()
     {

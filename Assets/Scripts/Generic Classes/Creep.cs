@@ -9,6 +9,8 @@ public class Creep {
     float mVelocity;
     float mCurrentHP;
     float mMaxHP;
+    float dt, tmpTimer;
+    Vector3 mPosition;
 
 	public Creep (CreepType Tipo, float HP = 100f, float Velocidad = 5f) {
         mType = Tipo;
@@ -25,6 +27,35 @@ public class Creep {
             //Matame
             mState = CreepState.Dead;
         }
+    }
+
+    public bool isAlive()
+    {
+        if (mCurrentHP <= 0)
+            return false;
+        else
+            return true;
+    }
+
+    public void Update(float DeltaTime)
+    {
+        dt = DeltaTime;
+
+        switch (mState)
+        { case CreepState.Idle: //No hacemos nada
+                break;
+            case CreepState.Walking: //Nos movemos
+                break;
+            case CreepState.Dying: //Ejecuta animación de Muerte
+                //Al terminar la animación se va a Dead
+                mState = CreepState.Dead;
+                break;
+            case CreepState.Dead: //Estamos muertos
+                break;
+            default:
+                break;
+        }
+
     }
 }
 

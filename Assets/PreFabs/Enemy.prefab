@@ -22,11 +22,12 @@ GameObject:
   - component: {fileID: 33883453525299902}
   - component: {fileID: 23325143959477490}
   - component: {fileID: 135478635973868710}
-  - component: {fileID: 114493602995811886}
   - component: {fileID: 54786605296620530}
+  - component: {fileID: 114325161202746816}
+  - component: {fileID: 195673771557785798}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1785182068462120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.14, y: 0.341, z: 2.18}
+  m_LocalPosition: {x: 5.82, y: 0.341, z: 5.96}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,7 +102,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &114493602995811886
+--- !u!114 &114325161202746816
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,11 +110,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1785182068462120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2498027ab7880c4c97caa9cd8cfce5f, type: 3}
+  m_Script: {fileID: 11500000, guid: f4e4b6f3e6ad688499a846cb6fb12497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  "da\xF1o": 1
+  towerPrincipal: {fileID: 0}
+  poinLife: {fileID: 0}
 --- !u!135 &135478635973868710
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -126,3 +127,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &195673771557785798
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1785182068462120}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

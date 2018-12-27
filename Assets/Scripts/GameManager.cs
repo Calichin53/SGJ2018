@@ -54,6 +54,11 @@ public class GameManager : MonoBehaviour {
     {// Inicio de la oleada
     }
 
+    public void PauseGame()
+    {
+        //Pausar o Continuar el juego
+    }
+
 
 }
 
