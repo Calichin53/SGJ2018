@@ -86,11 +86,11 @@ public class Tower {
         mState = TowerState.Blocked;
     }
 
-    public void Update(float deltaTime)
+    public void Update(float DeltaTime)
     {
         //Se gestiona la máquina de estados
 
-        dt = deltaTime;
+        dt = DeltaTime;
         switch (mState)
         {
             case TowerState.Idle://Esperamos un nuevo objetivo
@@ -111,7 +111,7 @@ public class Tower {
             case TowerState.Attacking:
                 Attack();
                 break;
-            case TowerState.Destructed:// No hacemos nada
+            case TowerState.Destructed:// No hacemos nada, tas muerto
                 break;
             default:
                 break;
