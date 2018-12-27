@@ -11,7 +11,7 @@ public class NexoController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        life.text = vida.ToString();
 	}
 	
 	// Update is called once per frame
