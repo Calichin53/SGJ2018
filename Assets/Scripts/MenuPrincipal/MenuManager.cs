@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour {
-    public string firstLevelScene;
+    public int firstLevelScene;
     public string creditsScene;
 
     public Animator playAnim;

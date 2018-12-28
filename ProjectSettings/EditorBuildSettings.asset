@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: d664f7e5c68bfcb4fbc449b14d8b7ad0
   - enabled: 1
+    path: Assets/Scenes/Level1/Level1.unity
+    guid: bcec25ae49e57034386ee6c2d36dbfb6
+  - enabled: 1
     path: Assets/Scenes/JoseSaldana.unity
     guid: db0d08153ebe61540932f86d21dd44c5
   - enabled: 1
