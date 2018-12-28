@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour {
     List<int> mResources;
     int mCurrentWave, mTotalWaves, mLifes, MusicIndex;
     GameState mState;
-    float tmpTime, SoundDelayTimer;
+    float tmpTime;
+    public float SoundDelayTimer;
     bool IntroPlayed;
 
     public List<Wave> Waves;
@@ -80,7 +81,7 @@ public class GameManager : MonoBehaviour {
     {
         if (!mMusicAudioSource.isPlaying)
         {
-            SetLoopMusic();
+                SetLoopMusic();
         }
     }
 
@@ -88,13 +89,14 @@ public class GameManager : MonoBehaviour {
     {
         SoundDelayTimer -= Time.deltaTime;
         if (SoundDelayTimer <= 0)
-        { SoundDelayTimer = Random.Range(5f, 40f);
+        { SoundDelayTimer = Random.Range(5f, 20f);
             mEfectsAudioSource.clip = Sounds[Random.Range(0, Sounds.Length-1)];
+            mEfectsAudioSource.Play();
         }
     }
 
     void SetIntroMusic()
-    { mMusicAudioSource.clip = Music[MusicIndex * 2 + 1];
+    { mMusicAudioSource.clip = Music[MusicIndex * 2];
         mMusicAudioSource.loop = false;
         mMusicAudioSource.Play();
         //IntroPlayed = true;
@@ -131,18 +133,23 @@ public class GameManager : MonoBehaviour {
                 //CreepFactory.NewCreepofType(CreepType.Air);
                 break;
             case GameState.LevelWon:
+                Debug.Log("Has Ganado");
                 break;
             case GameState.LevelLost:
+                Debug.Log("Has Perdido");
                 break;
             case GameState.GameWon:
+                Debug.Log("Has Ganado");
                 break;
             case GameState.GameInPause:
+                Debug.Log("Has Pauseado");
                 break;
             default:
                 break;
         }
 
         UpdateMusic();
+        UpdateSoundEfects();
     }
 
     void OnInitializing()
@@ -153,7 +160,8 @@ public class GameManager : MonoBehaviour {
         mTotalWaves = Waves.Count;
         mCurrentWave = 0;
         MusicIndex = 0;
-        //mState = GameState.BuildingFase;
+        mLifes = 20;
+        mState = GameState.BuildingFase;
     }
 
     void OnBuildingFase()
@@ -173,6 +181,19 @@ public class GameManager : MonoBehaviour {
     public void ChangeScene(string Escena)
     {
         SceneManager.LoadScene(Escena);
+    }
+
+    public void PlayerGetDamaged(int Dano)
+    {
+        mLifes -= Dano;
+        
+        if (mLifes <= 0)
+        {   //Has perdido ps Gil
+            //Show MsgPanel
+            Changestate(GameState.LevelLost);
+            mLifes = 0;
+        }
+        Debug.Log("GM: Vida - " + mLifes);
     }
 }
 
