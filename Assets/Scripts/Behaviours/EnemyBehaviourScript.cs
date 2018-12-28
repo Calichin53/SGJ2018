@@ -10,6 +10,9 @@ public class EnemyBehaviourScript : MonoBehaviour {
     public Transform mColorTransform;
     public SpriteRenderer mColorRenderer;
     public Animator mAnimator;
+    public AudioClip[] EnemySounds;
+
+    AudioSource mAudioSource;
     Creep mCreep;
     NavMeshAgent mAgent;
     float mDeadDelay;
@@ -18,6 +21,7 @@ public class EnemyBehaviourScript : MonoBehaviour {
 	void Start () {
         mCreep = new Creep(CreepType.Normal, transform.position);
         mAgent =  GetComponentInParent<NavMeshAgent>();
+        mAudioSource = GetComponentInParent<AudioSource>();
         mAgent.destination=GameObject.FindGameObjectWithTag("PathEnd").transform.position;
         mDeadDelay = 3f;
     }
@@ -34,6 +38,8 @@ public class EnemyBehaviourScript : MonoBehaviour {
                 {
                     mAgent.destination = transform.position;
                     mAnimator.Play("Muerte_Rapida");
+                    mAudioSource.clip = EnemySounds[0];
+                    mAudioSource.Play();
                 }
                 mDeadDelay -= Time.deltaTime;
                 if (mDeadDelay <= 0)
@@ -46,6 +52,12 @@ public class EnemyBehaviourScript : MonoBehaviour {
             //{ mCreep.Damage(10); }
         }
 	}
+
+    public void PlayRandomSound()
+    {
+        mAudioSource.clip = EnemySounds[Random.Range(1, 3)];
+        mAudioSource.Play();
+    }
 
     void UpdateLifeBar()
     {

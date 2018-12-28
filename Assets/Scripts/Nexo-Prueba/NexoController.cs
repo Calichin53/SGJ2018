@@ -21,7 +21,9 @@ public class NexoController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
+        Debug.Log("Base Triggered");
+        //Disminuir puntos de vida
+        //other.gameObject.GetComponentInChildren<EnemyBehaviourScript>().PlayRandomSound();
         Destroy(other.gameObject);
 
         /*if (other.CompareTag("Enemy"))
