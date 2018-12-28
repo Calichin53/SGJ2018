@@ -11,6 +11,7 @@ public static class TowerFactory {
         switch (Tipo)
         {
             case TowerType.BasicTower:
+                //tmp= new Tower()
                 tmp = null;
                 break;
             case TowerType.FireTower:

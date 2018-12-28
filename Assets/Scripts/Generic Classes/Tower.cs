@@ -15,13 +15,13 @@ public class Tower {
     Vector3 mPosition;
 
 
-    public Tower(Vector3 posicion)
+    public Tower(Vector3 Posicion, TowerType Tipo = TowerType.BasicTower)
     {
         //Constructor
 
         mType = TowerType.BasicTower;
         HasATarget = false;
-        mPosition = posicion;
+        mPosition = Posicion;
         
     }
 
