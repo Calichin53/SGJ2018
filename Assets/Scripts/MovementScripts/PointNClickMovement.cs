@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class PointNClickMovement : MonoBehaviour {
     
-    Rigidbody rigidbody;
+    Rigidbody body;
     Vector3 target;
     public float speed;
     MeshRenderer renderedHoveredIn;
     Color savedColorFromCollider;
     bool hasColliderUnhovered;
-
-    
-
 
     //Flag que indica si se esta moviendo
     bool isMoving;
@@ -22,6 +19,11 @@ public class PointNClickMovement : MonoBehaviour {
     float startTime;
     Vector3 startPositionBeforeClicked;
 
+    public Animator playerAnim;
+    public float speedRoation = 30f;
+
+    Vector3 targetPosition;
+
     //Layers para el Raycast
     //Crear Walkable y Tower como layers y asignarles 9 y 10
     public enum Layer
@@ -30,13 +32,14 @@ public class PointNClickMovement : MonoBehaviour {
         Tower = 10,
         RaycastEndStop = -1
     }
+
     public Layer[] layerPriorities = {
         Layer.Tower,
         Layer.Walkable
     };
+
     RaycastHit raycastHit;
     Layer layerHit;
-
 
     //Que tanta distancia se usa en el raycast
     [SerializeField] float distanceToBackground = 100f;
@@ -44,29 +47,27 @@ public class PointNClickMovement : MonoBehaviour {
     //Camara principal(se usa para el raycast)
     Camera viewCamera;
 
-
     // Use this for initialization
     void Start () {
-        rigidbody = GetComponent<Rigidbody>();
+        body = GetComponent<Rigidbody>();
         viewCamera = Camera.main;
 
     }
 	
 	// Update is called once per frame
-	void Update () {
-        
-
-
+	void Update ()
+    {
         RayCastAllLayers(ref raycastHit, ref layerHit);
         //Cuando presiona el click derecho va hacia la posicion del mouse
         if (Input.GetMouseButtonDown(0))
         {
+            SetTargetPosition();
+
             if (layerHit == Layer.Walkable)
             {
-
                 target = raycastHit.point;
-                target.y = rigidbody.position.y;
-                startPositionBeforeClicked = rigidbody.position;
+                target.y = body.position.y;
+                startPositionBeforeClicked = body.position;
                 distanceToClickedPoint =Vector3.Distance(startPositionBeforeClicked, target);
                 startTime = Time.time;
                 
@@ -91,13 +92,10 @@ public class PointNClickMovement : MonoBehaviour {
             UnhoverSavedCollider(raycastHit);
         }
         
-
-
-
         //Mientras no este en la meta
         if (isMoving)
         {
-            Vector3 rbPosition = rigidbody.position;
+            Vector3 rbPosition = body.position;
             if (rbPosition == target) isMoving = false;
             else
             {
@@ -108,19 +106,27 @@ public class PointNClickMovement : MonoBehaviour {
                 Debug.Log("startPosition: "+startPositionBeforeClicked);
                 Debug.Log("target: "+target);
                 Vector3 step = Vector3.Lerp(startPositionBeforeClicked, target, fracJourney);
-                rigidbody.MovePosition(step);
+                body.MovePosition(step);
             }
+
+            
         }
 
+        playerAnim.SetBool("Walk", isMoving);
+        Debug.Log(isMoving);
     }
-    void FixedUpdate()
+
+    void SetTargetPosition()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-        
-        
-        
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            targetPosition = hit.point;
+            this.transform.LookAt(targetPosition);
+        }
     }
-
 
     void OnClickBuilding(RaycastHit hit)
     {
@@ -160,10 +166,7 @@ public class PointNClickMovement : MonoBehaviour {
             renderer.material.color = Color.white;
         }
     }
-    void OnClickPlane(RaycastHit hit)
-    {
 
-    }
     RaycastHit? RaycastForLayer(Layer layer)
     {
         int layerMask = 1 << (int)layer; 
@@ -171,16 +174,16 @@ public class PointNClickMovement : MonoBehaviour {
         
         RaycastHit hit; 
         bool hasHit = Physics.Raycast(ray, out hit, distanceToBackground, layerMask);
+
         if (hasHit)
         {
-            //Debug.Log("has hit! " + layer.ToString());
             return hit;
         }
         return null;
     }
+
     void RayCastAllLayers(ref RaycastHit raycastHit,ref Layer layerHit)
-    {
-        
+    {    
         layerHit = Layer.RaycastEndStop;
         foreach (Layer layer in layerPriorities)
         {
@@ -188,17 +191,9 @@ public class PointNClickMovement : MonoBehaviour {
             if (hit.HasValue)
             {
                 raycastHit = hit.Value;
-                //if (layerHit != layer) // if layer has changed
-                //{
-                //    layerHit = layer;
-                //     // call the delegates
-                //}
                 layerHit = layer;
-                
             }
         }
-        
-        //Debug.Log("RayCastHit : " + layerHit.ToString());
     }
 
 }
