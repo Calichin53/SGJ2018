@@ -23,7 +23,6 @@ public class PathCollision : MonoBehaviour
 
     private void OnCollisionExit()
     {
-
         parent.changeToMaterial(transform.parent.childCount);
     }
 }

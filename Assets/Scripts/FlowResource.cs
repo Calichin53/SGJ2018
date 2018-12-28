@@ -14,7 +14,6 @@ public class FlowResource : MonoBehaviour
     public type TowerType;
     private Color myColor;
 
-
 	// Use this for initialization
 	void Start ()
     {
