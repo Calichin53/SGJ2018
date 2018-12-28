@@ -46,7 +46,7 @@ public class Intro : MonoBehaviour {
             if (FondoColor.color.a <= 0.2f)
             {
                 FadeAlphaRate *= -1;
-                floro.text = "";
+                floro.text = "Da Pr0t3kToR of da Neitur";
             }
             if (FondoColor.color.a >= 1f)
             {
