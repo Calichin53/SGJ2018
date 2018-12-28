@@ -22,7 +22,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Base Layer
+    m_Name: Base
     m_StateMachine: {fileID: 1107820303073629372}
     m_Mask: {fileID: 0}
     m_Motions: []
@@ -196,7 +196,7 @@ AnimatorState:
   m_Motion: {fileID: 7400000, guid: 92488b2330573cf478826c437a0ea4d4, type: 3}
   m_Tag: 
   m_SpeedParameter: 
-  m_MirrorParameter: 
+  m_MirrorParameter: New Bool
   m_CycleOffsetParameter: 
   m_TimeParameter: 
 --- !u!1107 &1107820303073629372
@@ -205,7 +205,7 @@ AnimatorStateMachine:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Base Layer
+  m_Name: Base
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102435987619096138}
