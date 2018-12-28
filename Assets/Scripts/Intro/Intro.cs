@@ -43,7 +43,7 @@ public class Intro : MonoBehaviour {
             color = FondoColor.color;
             color.a -= FadeAlphaRate * Time.deltaTime;
             FondoColor.color = color;
-            if (FondoColor.color.a <= 0.25f)
+            if (FondoColor.color.a <= 0.2f)
             {
                 FadeAlphaRate *= -1;
                 floro.text = "";
@@ -54,6 +54,8 @@ public class Intro : MonoBehaviour {
                 SceneManager.LoadScene("Menu");
             }
         }
+
+        Audio.volume = 1.2f - FondoColor.color.a;
     }
 
     void PlayAnotherStep()

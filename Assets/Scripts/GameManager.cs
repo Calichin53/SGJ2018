@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
-    public AudioClip[] Music;
-    public AudioSource mAudioSource;
+    public AudioClip[] Music, Sounds;
+    public AudioSource mMusicAudioSource, mEfectsAudioSource;
     List<int> mResources;
-    int mCurrentWave, mTotalWaves, mLifes;
+    int mCurrentWave, mTotalWaves, mLifes, MusicIndex;
     GameState mState;
-    float tmpTime;
+    float tmpTime, SoundDelayTimer;
+    bool IntroPlayed;
 
     public List<Wave> Waves;
     public List<Creep> CreepsInLevel;
@@ -28,10 +30,12 @@ public class GameManager : MonoBehaviour {
             DontDestroyOnLoad(this.gameObject);
             mResources = new List<int>();
             mState = GameState.Initializing;
-            mAudioSource = GetComponent<AudioSource>();
-            mAudioSource.clip = Music[0];
-            mAudioSource.volume = 0.5f;
-            tmpTime = 0;
+            //mMusicAudioSource = GetComponent<AudioSource>();
+            mMusicAudioSource.clip = Music[0];
+            mMusicAudioSource.volume = 0.5f;
+            tmpTime = SoundDelayTimer= 0;
+            IntroPlayed = false;
+            ChangeMusicIndex(0);
 
             Waves = new List<Wave>();
 
@@ -72,21 +76,46 @@ public class GameManager : MonoBehaviour {
         //Reinicia el Nivel Actual
     }
 
+    void UpdateMusic()
+    {
+        if (!mMusicAudioSource.isPlaying)
+        {
+            SetLoopMusic();
+        }
+    }
+
+    void UpdateSoundEfects()
+    {
+        SoundDelayTimer -= Time.deltaTime;
+        if (SoundDelayTimer <= 0)
+        { SoundDelayTimer = Random.Range(5f, 40f);
+            mEfectsAudioSource.clip = Sounds[Random.Range(0, Sounds.Length-1)];
+        }
+    }
+
+    void SetIntroMusic()
+    { mMusicAudioSource.clip = Music[MusicIndex * 2 + 1];
+        mMusicAudioSource.loop = false;
+        mMusicAudioSource.Play();
+        //IntroPlayed = true;
+    }
     void SetLoopMusic()
     {
-        mAudioSource.clip = Music[1];
-        mAudioSource.Play();
-        mAudioSource.loop = true;
+        mMusicAudioSource.clip = Music[MusicIndex*2+1];
+        mMusicAudioSource.loop = true;
+        mMusicAudioSource.Play();
+    }
+
+    public void ChangeMusicIndex(int Indice)
+    {
+        MusicIndex = Indice;
+        //IntroPlayed = false;
+        SetIntroMusic();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!mAudioSource.isPlaying)
-        {
-            SetLoopMusic();
-        }
-
         switch (mState)
         {
             case GameState.Initializing:
@@ -112,6 +141,8 @@ public class GameManager : MonoBehaviour {
             default:
                 break;
         }
+
+        UpdateMusic();
     }
 
     void OnInitializing()
@@ -121,7 +152,8 @@ public class GameManager : MonoBehaviour {
         Waves.Add(new Wave(12, CreepType.Normal, 10));
         mTotalWaves = Waves.Count;
         mCurrentWave = 0;
-        mState = GameState.BuildingFase;
+        MusicIndex = 0;
+        //mState = GameState.BuildingFase;
     }
 
     void OnBuildingFase()
@@ -131,6 +163,16 @@ public class GameManager : MonoBehaviour {
         {
 
         }
+    }
+
+    public void Changestate(GameState Estado)
+    {
+        mState = Estado;
+    }
+
+    public void ChangeScene(string Escena)
+    {
+        SceneManager.LoadScene(Escena);
     }
 }
 

@@ -74,6 +74,7 @@ public class MenuManager : MonoBehaviour {
     public void LoadFirstLevel()
     {
         SceneManager.LoadScene(firstLevelScene, LoadSceneMode.Single);
+        GameManager.instance.ChangeMusicIndex(1);
     }
     public void LoadCredits()
     {

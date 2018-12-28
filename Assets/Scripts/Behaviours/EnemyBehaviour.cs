@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBehaviourScript : MonoBehaviour {
+public class EnemyBehaviour : MonoBehaviour {
 
     public Transform mParentTransform;
     public Transform mLifeBarTransform;
@@ -43,7 +43,7 @@ public class EnemyBehaviourScript : MonoBehaviour {
                 }
                 mDeadDelay -= Time.deltaTime;
                 if (mDeadDelay <= 0)
-                { Destroy(this.gameObject); }
+                { Destroy(this.mParentTransform.gameObject); }
             }
 
             UpdateLifeBar();
