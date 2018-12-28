@@ -10,13 +10,13 @@ public class MenuManager : MonoBehaviour {
     public Animator playAnim;
     public Animator exitAnim;
     public Animator creditsAnim;
+
     bool hasPressed;
     enum MenuState { PLAY=0, EXIT=1, CREDITS=2};
     private MenuState state;
     // Use this for initialization
     void Start () {
         state = 0;
-
     }
 	
 	// Update is called once per frame
@@ -52,6 +52,7 @@ public class MenuManager : MonoBehaviour {
         {
             if (state == MenuState.PLAY)
             {
+
                 LoadFirstLevel();
             }
             else if (state == MenuState.EXIT)
@@ -63,13 +64,7 @@ public class MenuManager : MonoBehaviour {
                 LoadCredits();
             }
         }
-
-
     }
-
-    
-
-
 
     public void LoadFirstLevel()
     {

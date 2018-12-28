@@ -28,7 +28,7 @@ public class EnemySpawn : MonoBehaviour {
         }
 
         countDown -= Time.deltaTime;
-        oleada.text = "Siguiente oleada en: "+ Mathf.Round(countDown).ToString() +"s";
+        oleada.text = "Next Wave: "+ Mathf.Round(countDown).ToString();
 	}
 
     IEnumerator SpawnWave()

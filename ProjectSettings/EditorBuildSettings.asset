@@ -18,9 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/JoseSaldana.unity
     guid: db0d08153ebe61540932f86d21dd44c5
   - enabled: 1
-    path: Assets/Scenes/CarlosGuevara.unity
+    path: Assets/Scenes/Intro.unity
     guid: d86354bf3c1241842a048684bad88f9c
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 472f47daf687c3941834e2f4cdfc581b
+  - enabled: 1
+    path: Assets/Scenes/Level2/Level1.unity
+    guid: 6fbfb486a37b34a44a7e1ba3af6e0373
   m_configObjects: {}
