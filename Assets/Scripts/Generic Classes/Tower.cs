@@ -42,12 +42,6 @@ public class Tower {
         HasATarget = false;
     }
 
-    public void AskForTarget()
-    {
-        //Solicita al GameManager un nuevo objetivo
-
-    }
-
     public void GetNewTarget()
     {
         float minDistance=1000f;

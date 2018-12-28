@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44300684, g: 0.49219567, b: 0.5719244, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300717, g: 0.49219602, b: 0.5719251, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2213,7 +2213,7 @@ GameObject:
   - component: {fileID: 340888241}
   m_Layer: 0
   m_Name: EnemyPathEnd
-  m_TagString: Player
+  m_TagString: PathEnd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2227,10 +2227,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 2
+  m_Height: 5
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &340888238
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15368,6 +15368,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.50000006
       objectReference: {fileID: 0}
+    - target: {fileID: 1785182068462120, guid: 02bf4fc50a25abc428256081156a691f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02bf4fc50a25abc428256081156a691f, type: 2}
   m_IsPrefabAsset: 0
@@ -17453,7 +17457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c6102c038cc7c4c854751304b08189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1422228123}
+  enemy: {fileID: 4862157655957488, guid: a33933559653b964782f27b647db16be, type: 2}
   SpawnPoint: {fileID: 1832390251}
   timeOfSpawn: 25
   countDown: 2

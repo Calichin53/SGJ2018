@@ -12,7 +12,7 @@ public class Creep {
     float dt, tmpTimer;
     Vector3 mPosition;
 
-    public Vector3 Position { get { return mPosition; } }
+    public Vector3 Position { get { return mPosition; } set { mPosition = value; } }
 
 	public Creep (CreepType Tipo, Vector3 posicion, float HP = 100f, float Velocidad = 5f) {
         mType = Tipo;
@@ -28,6 +28,7 @@ public class Creep {
         if (mCurrentHP <= 0)
         {
             //Matame
+            mCurrentHP = 0;
             mState = CreepState.Dead;
         }
     }
@@ -38,6 +39,11 @@ public class Creep {
             return false;
         else
             return true;
+    }
+
+    public float currentRangeHP()
+    {
+        return mCurrentHP / mMaxHP;
     }
 
     public void Update(float DeltaTime)

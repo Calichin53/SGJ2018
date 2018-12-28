@@ -12,7 +12,8 @@ public class EnemyNavMesh : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         creep = GetComponent<NavMeshAgent>();
-	}
+        towerPrincipal = GameObject.FindGameObjectWithTag("PathEnd").transform;
+    }
 	
 	// Update is called once per frame
 	void Update () {

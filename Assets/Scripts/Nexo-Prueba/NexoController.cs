@@ -19,13 +19,16 @@ public class NexoController : MonoBehaviour {
         
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        Debug.Log("Triggered");
+        Destroy(other.gameObject);
+
+        /*if (other.CompareTag("Enemy"))
         {
-            vida -= golpe.daño;
+            //vida -= golpe.daño;
         }
-        //life.text = vida.ToString();
-    }*/
+        //life.text = vida.ToString();*/
+    }
 
 }

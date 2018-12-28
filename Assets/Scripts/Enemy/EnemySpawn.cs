@@ -15,8 +15,8 @@ public class EnemySpawn : MonoBehaviour {
 
     private int waveIndex = 0;
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+
 	}
 	
 	// Update is called once per frame
