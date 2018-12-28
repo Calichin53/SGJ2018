@@ -8,18 +8,20 @@ public class Tower {
     public TowerState mState;
     public float AttackRate, AttackPoints;
     public float BuildingSpeed, BuildingCost;
-    float tmpTimer, dt;
+    float tmpTimer, dt, mRange;
     public Creep Target;
     public bool HasATarget;
     Tower NextUpgrade;
+    Vector3 mPosition;
 
 
-    public Tower()
+    public Tower(Vector3 posicion)
     {
         //Constructor
 
         mType = TowerType.BasicTower;
         HasATarget = false;
+        mPosition = posicion;
         
     }
 
@@ -31,6 +33,7 @@ public class Tower {
         AttackRate = Modelo.AttackRate;
         BuildingSpeed = Modelo.BuildingSpeed;
         BuildingCost = Modelo.BuildingCost;
+        mRange = Modelo.mRange;
 
         tmpTimer = dt = 0;
         Target = null;
@@ -43,6 +46,25 @@ public class Tower {
     {
         //Solicita al GameManager un nuevo objetivo
 
+    }
+
+    public void GetNewTarget()
+    {
+        float minDistance=1000f;
+        float tmp = 0;
+        for (int i = 0; i < GameManager.instance.CreepsInLevel.Count;)
+        {
+            tmp = (GameManager.instance.CreepsInLevel[i].Position - mPosition).magnitude;
+            if ( tmp<= mRange)
+            {
+                if (tmp < minDistance)
+                {
+                    minDistance = tmp;
+                    Target = GameManager.instance.CreepsInLevel[i];
+                    HasATarget = true;
+                }
+            }
+        }
     }
 
     public void Attack()
@@ -96,7 +118,8 @@ public class Tower {
             case TowerState.Idle://Esperamos un nuevo objetivo
                 if (!HasATarget)
                 {
-                    AskForTarget();
+                    //AskForTarget();
+                    GetNewTarget();
                 }
                 else
                 {
