@@ -69,11 +69,12 @@ public class MenuManager : MonoBehaviour {
     public void LoadFirstLevel()
     {
         SceneManager.LoadScene(firstLevelScene, LoadSceneMode.Single);
-        GameManager.instance.ChangeMusicIndex(1);
+        GameManager.instance.ChangeMusicIndex(1); //Fondo Batalla
     }
     public void LoadCredits()
     {
         SceneManager.LoadScene(creditsScene, LoadSceneMode.Single);
+        GameManager.instance.ChangeMusicIndex(2);//Star Wars
     }
     public void ExitGame()
     {

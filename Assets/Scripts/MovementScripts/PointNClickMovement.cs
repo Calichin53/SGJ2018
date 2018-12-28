@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PointNClickMovement : MonoBehaviour {
-
-    
     
     Rigidbody rigidbody;
     Vector3 target;
@@ -12,6 +10,9 @@ public class PointNClickMovement : MonoBehaviour {
     MeshRenderer renderedHoveredIn;
     Color savedColorFromCollider;
     bool hasColliderUnhovered;
+
+    
+
 
     //Flag que indica si se esta moviendo
     bool isMoving;
