@@ -12,11 +12,14 @@ public class Creep {
     float dt, tmpTimer;
     Vector3 mPosition;
 
-	public Creep (CreepType Tipo, float HP = 100f, float Velocidad = 5f) {
+    public Vector3 Position { get { return mPosition; } }
+
+	public Creep (CreepType Tipo, Vector3 posicion, float HP = 100f, float Velocidad = 5f) {
         mType = Tipo;
         mMaxHP = mCurrentHP = HP;
         mVelocity = Velocidad;
         mState = CreepState.Idle;
+        mPosition = posicion;
 	}
 	
     public void Damage(float damage)

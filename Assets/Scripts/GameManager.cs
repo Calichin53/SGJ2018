@@ -5,9 +5,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
+    public AudioClip[] Music;
+    public AudioSource mAudioSource;
     List<int> mResources;
     int mCurrentWave, mTotalWaves, mLifes;
     GameState mState;
+    float tmpTime;
+
+    public List<Wave> Waves;
+    public List<Creep> CreepsInLevel;
+    public MainCharacter Character;
     public int CurrentWave { get { return mCurrentWave; } }
     public int TotalWaves { get { return mTotalWaves; } set { mTotalWaves = value; } }
     public int Lifes { get { return mLifes; }set { mLifes = value; } }
@@ -21,6 +28,12 @@ public class GameManager : MonoBehaviour {
             DontDestroyOnLoad(this.gameObject);
             mResources = new List<int>();
             mState = GameState.Initializing;
+            mAudioSource = GetComponent<AudioSource>();
+            mAudioSource.clip = Music[0];
+            mAudioSource.volume = 0.5f;
+            tmpTime = 0;
+
+            Waves = new List<Wave>();
 
             for (int i = 0; i < 4; i++)//Reemplazar con la cantidad de recursos
             {
@@ -31,11 +44,6 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
     public int GetResource(ResourceType Recurso)
@@ -59,9 +67,73 @@ public class GameManager : MonoBehaviour {
         //Pausar o Continuar el juego
     }
 
+    public void RestartLevel()
+    {
+        //Reinicia el Nivel Actual
+    }
 
+    void SetLoopMusic()
+    {
+        mAudioSource.clip = Music[1];
+        mAudioSource.Play();
+        mAudioSource.loop = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!mAudioSource.isPlaying)
+        {
+            SetLoopMusic();
+        }
+
+        switch (mState)
+        {
+            case GameState.Initializing:
+                OnInitializing();
+                tmpTime = 0;
+                break;
+            case GameState.BuildingFase://Tiempo de retraso previo a la salida de una oleada
+
+                break;
+            case GameState.WaveFighting:
+                break;
+            case GameState.WaveComplete:
+                //CreepFactory.NewCreepofType(CreepType.Air);
+                break;
+            case GameState.LevelWon:
+                break;
+            case GameState.LevelLost:
+                break;
+            case GameState.GameWon:
+                break;
+            case GameState.GameInPause:
+                break;
+            default:
+                break;
+        }
+    }
+
+    void OnInitializing()
+    {
+        Waves.Clear();
+        Waves.Add(new Wave());
+        Waves.Add(new Wave(12, CreepType.Normal, 10));
+        mTotalWaves = Waves.Count;
+        mCurrentWave = 0;
+        mState = GameState.BuildingFase;
+    }
+
+    void OnBuildingFase()
+    {
+        tmpTime += Time.deltaTime;
+        if (Waves[CurrentWave].mDelay <= tmpTime)
+        {
+
+        }
+    }
 }
 
-public enum ResourceType {Gold, Gem, Fire, Water};
+public enum ResourceType {YinYang, Fire, Water, Gold};
 
 public enum GameState {Initializing, BuildingFase, WaveFighting, WaveComplete, LevelWon, LevelLost, GameInPause, GameWon };
