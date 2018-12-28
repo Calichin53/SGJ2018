@@ -257,6 +257,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1861361f45a87d84b919f1b195ea0605, type: 3}
   - {fileID: 8300000, guid: c1736e4a1d8065741845123a05a61119, type: 3}
   - {fileID: 8300000, guid: ba5af32dfdaa18242af751b15483cfb6, type: 3}
+  - {fileID: 8300000, guid: af1d6df858c8d6b4283c362912a67b10, type: 3}
+  - {fileID: 8300000, guid: e1cc64dc5fa651d4988d0ae7f2265dfc, type: 3}
   mMusicAudioSource: {fileID: 82897864676419202}
   mEfectsAudioSource: {fileID: 82192064187756114}
   SoundDelayTimer: 0

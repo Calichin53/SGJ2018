@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CreditManager : MonoBehaviour {
-    public string menuScene;
+    //public string menuScene;
     // Use this for initialization
     void Start () {
 		
@@ -22,7 +22,9 @@ public class CreditManager : MonoBehaviour {
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(menuScene, LoadSceneMode.Single);
+        GameManager.instance.ChangeMusicIndex(0);
+        //SceneManager.LoadScene(menuScene, LoadSceneMode.Single);
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
     
 }

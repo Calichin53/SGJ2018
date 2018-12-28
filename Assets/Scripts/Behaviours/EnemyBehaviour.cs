@@ -91,4 +91,9 @@ public class EnemyBehaviour : MonoBehaviour {
         if (collision.gameObject.tag == "PathEnd")
             Debug.Log("Llegamos por Collision");
     }
+
+    public Creep GetCreep()
+    {
+        return mCreep;
+    }
 }

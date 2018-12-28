@@ -25,7 +25,8 @@ public class NexoController : MonoBehaviour {
         //Disminuir puntos de vida
         //other.gameObject.GetComponentInChildren<EnemyBehaviourScript>().PlayRandomSound();
         GameManager.instance.PlayerGetDamaged(1);
-        Destroy(other.gameObject);
+        //Destroy(other.gameObject);
+        GameManager.instance.RemoveEnemy(other.gameObject);
         Debug.Log("recibes "+ 1 +" de daño...");
         /*if (other.CompareTag("Enemy"))
         {

@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour {
     {
         SoundDelayTimer -= Time.deltaTime;
         if (SoundDelayTimer <= 0)
-        { SoundDelayTimer = Random.Range(5f, 20f);
+        { SoundDelayTimer = Random.Range(5f, 10f);
             mEfectsAudioSource.clip = Sounds[Random.Range(0, Sounds.Length-1)];
             mEfectsAudioSource.Play();
         }
@@ -194,6 +194,20 @@ public class GameManager : MonoBehaviour {
             mLifes = 0;
         }
         Debug.Log("GM: Vida - " + mLifes);
+    }
+
+    public void RemoveEnemy(GameObject Criatura)
+    {
+        //Drop de recursos;
+        if (Random.Range(0, 9) > 4)
+        { mResources[(int)ResourceType.YinYang]++; }
+
+        /*CreepsInLevel.Remove(Criatura.GetComponentInChildren<EnemyBehaviour>().GetCreep());
+        if (CreepsInLevel.Count <= 0)
+        {
+            mState = GameState.WaveComplete;
+        }*/
+        Destroy(Criatura);
     }
 }
 
