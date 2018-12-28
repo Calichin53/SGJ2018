@@ -15,7 +15,7 @@ public class PathCollision : MonoBehaviour
 	
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.name == "Piedra")
+        if (collision.gameObject.CompareTag("Piedra"))
         {
             parent.changeToMaterial(transform.GetSiblingIndex());
         }
