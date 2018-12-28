@@ -19,7 +19,7 @@ public class HUDBehaviour : MonoBehaviour {
     void UpdateTextsInDisplay()
     {
         LifeText.text = GameManager.instance.Lifes.ToString();
-        WavesText.text = GameManager.instance.CurrentWave + " / " + GameManager.instance.TotalWaves;
+        WavesText.text = GameManager.instance.CurrentWave + " l " + GameManager.instance.TotalWaves;
         YYText.text = GameManager.instance.GetResource(ResourceType.YinYang).ToString();
 
     }
