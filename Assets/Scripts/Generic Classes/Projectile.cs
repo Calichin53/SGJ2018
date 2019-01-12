@@ -8,23 +8,26 @@ public class Projectile {
     ProjectileState mState;
     Vector3 mPosition, mDirection;
     float mVelocity, tmpTimer, dt, mDamage;
+    public bool destroyMe;
     Creep mTarget;
 
-    public Projectile(Creep Objetivo, Vector3 Posicion, float Velocidad= 10f, ProjectileType Tipo= ProjectileType.Normal, float Daño= 10f)
+    public Projectile(Creep Objetivo, Vector3 Posicion, float Velocidad= 10f, ProjectileType Tipo= ProjectileType.Normal, float Dano= 10f)
     {
         mType = Tipo;
         mPosition = Posicion;
         mVelocity = Velocidad;
         mTarget = Objetivo;
         dt = tmpTimer=0;
+        destroyMe = false;
     }
 
-	void Update (float DeltaTime) {
+	public void Update (float DeltaTime) {
         dt = DeltaTime;
         switch (mState)
         {
             case ProjectileState.Initialized:
                 mState = ProjectileState.Moving;
+                Move();
                 break;
             case ProjectileState.Moving://Persigue al objetivo
 
@@ -34,6 +37,7 @@ public class Projectile {
                 DamageTarget();
                 break;
             case ProjectileState.Destroy://Esperar hasta ser destruido
+                destroyMe = true;
                 break;
         }
 	}
@@ -45,10 +49,14 @@ public class Projectile {
 
     void Move()
     {
-
+        mDirection = (mTarget.Position - mPosition).normalized;
+        mPosition += mDirection * mVelocity * dt;
     }
+
+    public void TargetReached()
+    { mState= ProjectileState.ReachingTarget; }
 
 }
 
-public enum ProjectileType{Normal, Arco, Laser};
+public enum ProjectileType{Normal, Fire, Water};
 public enum ProjectileState {Initialized, Moving, ReachingTarget, Destroy};

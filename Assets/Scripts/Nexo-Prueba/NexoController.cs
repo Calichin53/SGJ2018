@@ -21,14 +21,17 @@ public class NexoController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        //Destroy(other.gameObject);
         //Disminuir puntos de vida
         //other.gameObject.GetComponentInChildren<EnemyBehaviourScript>().PlayRandomSound();
-        GameManager.instance.PlayerGetDamaged(1);
-        //Destroy(other.gameObject);
-        GameManager.instance.RemoveEnemy(other.gameObject);
-        Debug.Log("recibes "+ 1 +" de daño...");
-        /*if (other.CompareTag("Enemy"))
+        if (other.tag == "enemy")
+        {
+            GameManager.instance.PlayerGetDamaged(1);
+
+            GameManager.instance.RemoveEnemy(other.gameObject);
+            Debug.Log("recibes " + 1 + " de daño...");
+        }
+            /*if (other.CompareTag("Enemy"))
         {
             //vida -= golpe.daño;
         }

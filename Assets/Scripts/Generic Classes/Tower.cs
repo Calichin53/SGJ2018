@@ -11,6 +11,7 @@ public class Tower {
     float tmpTimer, dt, mRange;
     public Creep Target;
     public bool HasATarget;
+    public bool Fire;
     Tower NextUpgrade;
     Vector3 mPosition;
 
@@ -26,7 +27,8 @@ public class Tower {
         AttackPoints = APoints;
         BuildingSpeed = BSpeed;
         BuildingCost = BCost;
-        mRange = Rango;        
+        mRange = Rango;
+        Fire = false;
     }
 
     public void CopyModel(Tower Modelo)
@@ -44,6 +46,7 @@ public class Tower {
         NextUpgrade = null;
         mState = TowerState.Idle;
         HasATarget = false;
+        Fire = false;
     }
 
     public void GetNewTarget()
@@ -75,7 +78,8 @@ public class Tower {
             if (tmpTimer >= AttackRate)
             {
                 tmpTimer -= AttackRate;
-                Target.Damage(AttackPoints);
+                Fire = true;
+                //Target.Damage(AttackPoints);
                 if (!Target.isAlive())
                     HasATarget = false;
             }

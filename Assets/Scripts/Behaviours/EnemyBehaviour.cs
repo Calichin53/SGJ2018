@@ -47,7 +47,7 @@ public class EnemyBehaviour : MonoBehaviour {
             }
 
             UpdateLifeBar();
-            mCreep.Damage(2 * Time.deltaTime);
+            mCreep.Damage(3 * Time.deltaTime);
             //if (Input.GetKeyDown(KeyCode.M))
             //{ mCreep.Damage(10); }
         }
